@@ -2,9 +2,8 @@
 import bodyParser from 'body-parser';
 import { google, sheets_v4 } from 'googleapis';
 import { readFileSync } from 'fs';
-import expressPkg from 'express';
-const express = expressPkg;
-const { Request, Response } = expressPkg;
+import expressPkg, { Request, Response } from 'express';
+
 const credentials = JSON.parse(readFileSync('./service-account.json', 'utf-8'));
 interface Item {
   id: string | number;
@@ -17,7 +16,7 @@ interface Body {
   items: Item[];
 }
 
-const app = express();
+const app = expressPkg();
 app.use(bodyParser.json());
 
 // Configuración de Google Sheets
@@ -31,7 +30,7 @@ const sheetsApi = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = '1FpoSpUEj9YB_A-47mMDMfokdpv400Mb9mscKuWRwoDQ';
 const SHEET_NAME = 'Hoja 1';
 
-app.post('/items', async (req: Request<{}, {}, Body>, res: Response) => {
+app.post('/items', async (req: Request, res: Response) => {
   const { name, items } = req.body;
   if (typeof name !== 'string' || !Array.isArray(items)) {
     return res.status(400).json({ error: 'Body inválido' });
