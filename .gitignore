@@ -13,7 +13,7 @@
 .env.local
 
 # Service account key (Google Sheets)
-/service-account.json
+service-account.json
 
 # Logs
 npm-debug.log*

@@ -1,0 +1,13 @@
+# test.http
+
+### POST /items
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+  "name": "MiNombre",
+  "items": [
+    { "id": 1, "description": "Desc 1", "rank": 3 },
+    { "id": 2, "description": "Desc 2", "rank": 5 }
+  ]
+}
