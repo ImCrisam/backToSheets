@@ -27,8 +27,8 @@ const auth = new google.auth.GoogleAuth({
 });
 const sheetsApi = google.sheets({ version: 'v4', auth });
 
-const SPREADSHEET_ID = '1FpoSpUEj9YB_A-47mMDMfokdpv400Mb9mscKuWRwoDQ';
-const SHEET_NAME = 'Hoja 1';
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID || '1FpoSpUEj9YB_A-47mMDMfokdpv400Mb9mscKuWRwoDQ';
+const SHEET_NAME = process.env.SHEET_NAME || 'Hoja 1';
 
 app.post('/items', async (req: Request, res: Response) => {
   const { name, items } = req.body;
